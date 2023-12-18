@@ -15,15 +15,19 @@ const validateInput = (inputObj) => {
                 if(user[0] != Number(user[0])) {
                     stateUsername = true; // Username is true
                 } else {
+                    alert('First char of username is a number');
                     console.log('First char of username is a number');
                 }
             } else {
+                alert('username has space');
                 console.log('username has space');
             }
         } else {
+            alert('username must more than 3 character');
             console.log('username must more than 3 character');
         }
     } else {
+        alert('Username has empty!');
         console.log('Username has empty!');
     }
 
@@ -46,15 +50,19 @@ const validateInput = (inputObj) => {
                 if(numberCheck == stringCheck) { 
                     statePassword = true; // Password is true
                 } else {
+                    alert('The password must contain a string and number');
                     console.log('The password must contain a string and number');
                 }
             } else {
+                alert('password has space');
                 console.log('password has space');
             }
         } else {
+            alert('The password must more than 4 character');
             console.log('The password must more than 4 character');
         }
     } else {
+        alert('Password has empty!');
         console.log('Password has empty!');
     }
 
@@ -63,6 +71,7 @@ const validateInput = (inputObj) => {
     if(role != ''){
         stateRole = true;
     } else {
+        alert('Please Select Role!');
         console.log('Please Select Role!');
     }
 
