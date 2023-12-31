@@ -90,7 +90,6 @@ const validateInput = (inputObj) => {
     }
 
     // Validate
-    let check = 0;
     let access = false;
 
     if(stateUsername == true && statePassword == true && stateRole == true) {
@@ -117,10 +116,6 @@ const validateInput = (inputObj) => {
         } else {
             password.style.color = 'black';
         }
-    }
-
-    if(check > 3) {
-        alert('You loggin fail 3 times');
     }
 }
 
