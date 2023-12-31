@@ -1,6 +1,12 @@
 const loginForm = document.querySelector('.login-form');
 const username = document.querySelector('#username');
 const password = document.querySelector('#password');
+const users = [
+    {name: 'andy123', password: 'andy1234'},
+    {name: 'bobby123', password: 'bobby2345'},
+    {name: 'candy123', password: 'candy3456'}
+];
+
 
 const validateInput = (inputObj) => {
     const user = inputObj.username.trim().replace(' ', '');
@@ -13,7 +19,11 @@ const validateInput = (inputObj) => {
         if(user.length > 3) {
             if(!user.includes(' ')) {
                 if(user[0] != Number(user[0])) {
-                    stateUsername = true; // Username is true
+                    for(let i = 0; i < users.length; i++) {
+                        if(user === users[i].name) {
+                            stateUsername = true; // Username is true
+                        }
+                    }
                 } else {
                     alert('First char of username is a number');
                     console.log('First char of username is a number');
@@ -48,7 +58,11 @@ const validateInput = (inputObj) => {
                 //console.log('num = '+ numberCheck);
                 //console.log('string = '+ stringCheck);
                 if(numberCheck == stringCheck) { 
-                    statePassword = true; // Password is true
+                    for(let i = 0; i < users.length; i++) {
+                        if(pass === users[i].password) {
+                            statePassword = true; // Password is true
+                        }
+                    }
                 } else {
                     alert('The password must contain a string and number');
                     console.log('The password must contain a string and number');
@@ -76,19 +90,37 @@ const validateInput = (inputObj) => {
     }
 
     // Validate
+    let check = 0;
+    let access = false;
+
     if(stateUsername == true && statePassword == true && stateRole == true) {
-        location.assign('https://www.example.com');
+        for(let i = 0; i < users.length; i++) {
+            if(user == users[i].name && pass == users[i].password) {
+                access = true;
+            }
+        }
+        if(access == true) {
+            location.assign('https://www.example.com');
+        }else{
+            alert('username or password invalid');
+        }
     } else {
         if(stateUsername == false) {
             username.style.color = 'red';
+            check += 1;
         } else {
             username.style.color = 'black';
         }
         if(statePassword == false) {
             password.style.color = 'red';
+            check += 1;
         } else {
             password.style.color = 'black';
         }
+    }
+
+    if(check > 3) {
+        alert('You loggin fail 3 times');
     }
 }
 
